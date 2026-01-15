@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VerifyFirst | AI Fake News Detector</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Tailwind Config for Custom Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        deepBlack: '#050507',
+                        cardDark: '#0e1016',
+                        neonCyan: '#00f3ff',
+                        neonPurple: '#9d00ff',
+                        softGray: '#a0a0a5'
+                    },
+                    fontFamily: {
+                        sans: ['Outfit', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-deepBlack text-white min-h-screen flex flex-col items-center p-6 selection:bg-neonCyan selection:text-black">
+
+    <!-- Header -->
+    <header class="w-full max-w-2xl text-center mt-10 mb-12">
+        <h1 class="text-5xl font-bold tracking-tight mb-2 bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">
+            VerifyFirst
+        </h1>
+        <p class="text-neonCyan tracking-widest uppercase text-sm font-semibold glow-text">
+            Verify before you believe
+        </p>
+    </header>
+
+    <!-- Main Content -->
+    <main class="w-full max-w-2xl relative">
+        
+        <!-- Input Card -->
+        <div id="input-card" class="bg-cardDark p-8 rounded-2xl border border-gray-800 shadow-2xl transition-all duration-300 hover:border-gray-700 relative z-10">
+            <textarea 
+                id="news-input" 
+                rows="5" 
+                class="w-full bg-[#161821] text-lg text-gray-200 p-4 rounded-xl border border-gray-700 outline-none focus:border-neonCyan focus:shadow-[0_0_15px_rgba(0,243,255,0.3)] transition-all resize-none placeholder-gray-600"
+                placeholder="Paste a news headline or short article here to verify its credibility..."></textarea>
+            
+            <button 
+                id="analyze-btn" 
+                class="w-full mt-6 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-black font-bold text-lg tracking-wide uppercase shadow-[0_0_20px_rgba(0,243,255,0.4)] hover:shadow-[0_0_35px_rgba(0,243,255,0.6)] hover:scale-[1.02] active:scale-[0.98] transition-all flex justify-center items-center gap-2 group">
+                <span>Analyze Credibility</span>
+                <!-- Scanner Icon -->
+                <svg class="w-5 h-5 group-hover:rotate-180 transition-transform duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </button>
+        </div>
+
+        <!-- Result Card (Hidden Initially) -->
+        <div id="result-card" class="hidden mt-8 bg-cardDark p-8 rounded-2xl border border-gray-800 shadow-2xl animate-fade-in-up">
+            
+            <div class="flex justify-between items-start mb-6 pb-6 border-b border-gray-800">
+                <div>
+                    <p class="text-softGray text-sm uppercase tracking-wider mb-1">Credibility Score</p>
+                    <div class="text-6xl font-bold" id="score-value">--%</div>
+                </div>
+                <!-- Status Badge -->
+                <div id="status-badge" class="px-4 py-2 rounded-full font-bold text-sm bg-gray-800 text-gray-400 border border-gray-700">
+                    ANALYZING...
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <p class="text-softGray text-sm uppercase tracking-wider">AI Analysis</p>
+                <ul id="reasons-list" class="space-y-3">
+                    <!-- Dynamic List Items -->
+                </ul>
+            </div>
+
+            <button onclick="resetApp()" class="mt-8 text-sm text-gray-500 hover:text-white transition-colors underline decoration-gray-700 hover:decoration-white underline-offset-4">
+                Check Another Article
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Background Elements -->
+    <div class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
+        <div class="absolute top-[-10%] left-[20%] w-[500px] h-[500px] bg-neonPurple opacity-[0.05] blur-[150px] rounded-full"></div>
+        <div class="absolute bottom-[-10%] right-[10%] w-[600px] h-[600px] bg-neonCyan opacity-[0.05] blur-[150px] rounded-full"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
